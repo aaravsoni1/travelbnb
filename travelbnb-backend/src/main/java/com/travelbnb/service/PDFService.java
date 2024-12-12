@@ -20,7 +20,7 @@ public class PDFService {
     public boolean generatePDF(String filename, Booking booking) throws FileNotFoundException{
         try {
             Document document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream("C://Users//Keval//pdf_example//"+"Booking-Confirmation-id"+ filename+".pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("D://pdf_example//"+"Booking-Confirmation-id"+ filename+".pdf"));
 
             document.open();
             Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);

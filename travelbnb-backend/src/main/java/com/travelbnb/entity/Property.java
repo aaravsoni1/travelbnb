@@ -98,4 +98,6 @@ public class Property {
     public void setLocation(Location location) {
         this.location = location;
     }
+
+
 }

@@ -10,6 +10,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import java.util.List;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -25,7 +27,7 @@ public class SecurityConfig {
                 .cors()
                 .and()
                 .authorizeRequests()
-                .requestMatchers("/api/v1/user/login", "/api/v1/user/createUser").permitAll()
+                .requestMatchers("/api/v1/user/login", "/api/v1/user/createUser" , "/api/v1/property/allProperties").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -39,8 +41,8 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
         config.addAllowedOrigin("http://localhost:3000"); // Allow Angular | React frontend
-        config.addAllowedHeader("*");
-        config.addAllowedMethod("*");
+        config.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
+        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }

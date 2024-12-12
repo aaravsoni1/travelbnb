@@ -1,11 +1,13 @@
 package com.travelbnb.controller;
 
+import com.travelbnb.payload.FormDto;
 import com.travelbnb.payload.PropertyDto;
 import com.travelbnb.service.PropertyImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -18,6 +20,12 @@ public class PropertyController {
     @PostMapping("/addProperty")
     public ResponseEntity<?> addProperty(@RequestBody PropertyDto propertyDto) {
         PropertyDto saved = property.addProperty(propertyDto, propertyDto.getCountry(), propertyDto.getLocation());
+        return new ResponseEntity<>(saved, HttpStatus.CREATED);
+    }
+    @PostMapping("/addNewProperty")
+    public ResponseEntity<?> addNewProperty(@ModelAttribute FormDto dto,
+                                            @RequestParam("file") MultipartFile file) {
+        FormDto saved = property.addNewProperty(dto, file);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 

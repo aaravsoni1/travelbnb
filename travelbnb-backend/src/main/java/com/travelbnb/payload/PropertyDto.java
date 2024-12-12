@@ -2,7 +2,10 @@ package com.travelbnb.payload;
 
 import com.travelbnb.entity.Country;
 import com.travelbnb.entity.Location;
+import lombok.Data;
 
+import java.util.List;
+@Data
 public class PropertyDto {
     private Long id;
     private String name;
@@ -12,6 +15,13 @@ public class PropertyDto {
     private Integer price;
     private Long country;
     private Long location;
+    private String image_url;
+//    private List<PropertyDto> content;
+//    private Integer totalPages;
+//    private Long totalElements;
+//    private Integer pageSize;
+//    private Integer pageNo;
+
 
     public Long getCountry() {
         return country;
